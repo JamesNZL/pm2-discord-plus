@@ -47,12 +47,12 @@ pm2 set pm2-discord-plus:error false
 ## Options
 
 The following options are available:
-| Option             | Type    | Description                                                                                                                                                              | Default                           |
-| ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| **process_name**   | string  | Use this to setting to only output the logs of a specific process                                                                                                        | `Default: NULL`                   |
-| **buffer**         | boolean | Whether to buffer messages by timestamp. Messages that occur within `buffer_seconds` of each other will be concatenated and posted together in a single Discord message. | `Default: true`                   |
-| **buffer_seconds** | int     | Number of seconds within which to aggregate messages. Ignored if `buffer` is `false`.                                                                                    | `Min: 1, Max: 5, Default: 1`      |
-| **queue_max**      | int     | Maximum number of messages to keep in the queue before truncation. When the queue exceeds this maximum, a rate limit message will be posted to Discord.                  | `Min: 10, Max: 100, Default: 100` |
+| Option             | Type    | Description                                                                                                                                                              | Default | Range               |
+| ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | ------------------- |
+| **process_name**   | string  | Use this to setting to only output the logs of a specific process                                                                                                        | `null`  |                     |
+| **buffer**         | boolean | Whether to buffer messages by timestamp. Messages that occur within `buffer_seconds` of each other will be concatenated and posted together in a single Discord message. | `true`  |                     |
+| **buffer_seconds** | int     | Number of seconds within which to aggregate messages. Ignored if `buffer` is `false`.                                                                                    | `1`     | `Min: 1, Max: 5`    |
+| **queue_max**      | int     | Maximum number of messages to keep in the queue before truncation. When the queue exceeds this maximum, a rate limit message will be posted to Discord.                  | `100`   | `Min: 10, Max: 100` |
 
 Set these options in the same way you subscribe to events.
 
