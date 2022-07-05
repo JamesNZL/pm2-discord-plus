@@ -61,6 +61,7 @@
     "queue_max": 100
   },
   "devDependencies": {
+    "eslint": "^8.19.0",
     "standard-version": "^9.5.0"
   }
 }
