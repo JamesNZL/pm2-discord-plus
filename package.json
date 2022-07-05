@@ -53,5 +53,8 @@
     "buffer": true,
     "buffer_seconds": 1,
     "queue_max": 100
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
   }
 }
