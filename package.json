@@ -4,7 +4,7 @@
   "description": "A PM2 module to emit events to discord with style",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "standard-version --sign"
   },
   "repository": {
     "type": "git",
