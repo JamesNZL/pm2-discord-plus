@@ -52,8 +52,8 @@ function sendToDiscord(message) {
 
   // The JSON payload to send to the Webhook
   var payload = {
-    "content" : description,
-    "avatar_url": profile_url
+    'content' : description,
+    'avatar_url': profile_url
   };
 
   // Options for the post request
@@ -71,7 +71,7 @@ function sendToDiscord(message) {
     }
     /* A successful POST to Discord's webhook responds with a 204 NO CONTENT */
     if (res.statusCode !== 204) {
-      console.error("Error occured during the request to the Discord webhook");
+      console.error('Error occured during the request to the Discord webhook');
     }
   });
 }
@@ -97,7 +97,7 @@ function bufferMessage() {
   }
 
   // join the buffer with newlines
-  nextMessage.description = nextMessage.buffer.join("\n");
+  nextMessage.description = nextMessage.buffer.join('\n');
 
   // delete the buffer from memory
   delete nextMessage.buffer;
@@ -119,9 +119,9 @@ function processQueue() {
       suppressed.isSuppressed = true;
       suppressed.date = new Date().getTime();
       sendToDiscord({
-          name: 'pm2-discord-plus',
-          event: 'suppressed',
-          description: 'Messages are being suppressed due to rate limiting.'
+        name: 'pm2-discord-plus',
+        event: 'suppressed',
+        description: 'Messages are being suppressed due to rate limiting.'
       });
     }
     messages.splice(conf.queue_max, messages.length);
@@ -150,7 +150,7 @@ function createMessage(data, eventName, altDescription) {
   }
 
   var msg = altDescription || data.data;
-  if (typeof msg === "object") {
+  if (typeof msg === 'object') {
     msg = JSON.stringify(msg);
   } 
 
@@ -158,54 +158,54 @@ function createMessage(data, eventName, altDescription) {
     name: data.process.name,
     event: eventName,
     description: stripAnsi(msg),
-    timestamp: Math.floor(Date.now() / 1000),
+    timestamp: Math.floor(Date.now() / 1000)
   });
 }
 
 // Start listening on the PM2 BUS
 pm2.launchBus(function(err, bus) {
 
-    // Listen for process logs
-    if (conf.log) {
-      bus.on('log:out', function(data) {
-        createMessage(data, 'log');
-      });
-    }
-
-    // Listen for process errors
-    if (conf.error) {
-      bus.on('log:err', function(data) {
-        createMessage(data, 'error');
-      });
-    }
-
-    // Listen for PM2 kill
-    if (conf.kill) {
-      bus.on('pm2:kill', function(data) {
-        messages.push({
-          name: 'PM2',
-          event: 'kill',
-          description: data.msg,
-          timestamp: Math.floor(Date.now() / 1000),
-        });
-      });
-    }
-
-    // Listen for process exceptions
-    if (conf.exception) {
-      bus.on('process:exception', function(data) {
-        createMessage(data, 'exception');
-      });
-    }
-
-    // Listen for PM2 events
-    bus.on('process:event', function(data) {
-      if (!conf[data.event]) { return; }
-      var msg = 'The following event has occured on the PM2 process ' + data.process.name + ': ' + data.event;
-      createMessage(data, data.event, msg);
+  // Listen for process logs
+  if (conf.log) {
+    bus.on('log:out', function(data) {
+      createMessage(data, 'log');
     });
+  }
 
-    // Start the message processing
-    processQueue();
+  // Listen for process errors
+  if (conf.error) {
+    bus.on('log:err', function(data) {
+      createMessage(data, 'error');
+    });
+  }
+
+  // Listen for PM2 kill
+  if (conf.kill) {
+    bus.on('pm2:kill', function(data) {
+      messages.push({
+        name: 'PM2',
+        event: 'kill',
+        description: data.msg,
+        timestamp: Math.floor(Date.now() / 1000)
+      });
+    });
+  }
+
+  // Listen for process exceptions
+  if (conf.exception) {
+    bus.on('process:exception', function(data) {
+      createMessage(data, 'exception');
+    });
+  }
+
+  // Listen for PM2 events
+  bus.on('process:event', function(data) {
+    if (!conf[data.event]) { return; }
+    var msg = 'The following event has occured on the PM2 process ' + data.process.name + ': ' + data.event;
+    createMessage(data, data.event, msg);
+  });
+
+  // Start the message processing
+  processQueue();
 
 });
