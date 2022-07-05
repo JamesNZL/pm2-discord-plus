@@ -8,10 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Naxey/pm2-discord-plus"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/naxey"
+    "url": "https://github.com/JamesNZL/pm2-discord-plus"
   },
   "keywords": [
     "pm2",
@@ -21,15 +18,24 @@
     "embed",
     "log"
   ],
-  "author": {
-    "name": "Naxey",
-    "email": "max@naxey.de"
-  },
-  "licenses": "",
+  "contributors": [
+    {
+      "name": "James",
+      "email": "james@jamesnzl.xyz"
+    },
+    {
+      "name": "Naxey",
+      "email": "max@naxey.de"
+    },
+    {
+      "name": "Francisco",
+      "email": "info@franciscog.com"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/Naxey/pm2-discord-plus/issues"
+    "url": "https://github.com/JamesNZL/pm2-discord-plus/issues"
   },
-  "homepage": "https://github.com/Naxey/pm2-discord-plus",
+  "homepage": "https://github.com/JamesNZL/pm2-discord-plus",
   "dependencies": {
     "pm2": "^4.1.2",
     "pmx": "^1.6.7",
