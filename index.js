@@ -31,7 +31,7 @@ function sendToDiscord(message) {
 
   var description = message.description;
 
-  // If a Discord URL is not set, we do not want to continue and nofify the user that it needs to be set
+  // If a Discord URL is not set, we do not want to continue and notify the user that it needs to be set
   if (!conf.discord_url) {
     return console.error("There is no Discord URL set, please set the Discord URL: 'pm2 set pm2-discord-plus:discord_url https://[discord_url]'");
   }
@@ -71,7 +71,7 @@ function sendToDiscord(message) {
     }
     /* A successful POST to Discord's webhook responds with a 204 NO CONTENT */
     if (res.statusCode !== 204) {
-      console.error('Error occured during the request to the Discord webhook');
+      console.error('Error occurred during the request to the Discord webhook');
     }
   });
 }
@@ -201,7 +201,7 @@ pm2.launchBus(function(err, bus) {
   // Listen for PM2 events
   bus.on('process:event', function(data) {
     if (!conf[data.event]) { return; }
-    var msg = 'The following event has occured on the PM2 process ' + data.process.name + ': ' + data.event;
+    var msg = 'The following event has occurred on the PM2 process ' + data.process.name + ': ' + data.event;
     createMessage(data, data.event, msg);
   });
 
