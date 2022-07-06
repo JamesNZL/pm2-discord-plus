@@ -3,6 +3,7 @@ var pm2 = require('pm2');
 var pmx = require('pmx');
 var request = require('request');
 var stripAnsi = require('strip-ansi');
+var dateFormat = require('dateformat');
 
 var config = require('./config.json');
 
@@ -30,6 +31,7 @@ var suppressed = {
 function sendToDiscord(message) {
 
   var description = message.description;
+  var dateTime = dateFormat(message.timestamp * 1000, conf.date_format || 'default');
 
   // If a Discord URL is not set, we do not want to continue and notify the user that it needs to be set
   if (!conf.discord_url) {
@@ -52,7 +54,7 @@ function sendToDiscord(message) {
 
   // The JSON payload to send to the Webhook
   var payload = {
-    'content' : description,
+    'content' : dateTime + ':\n\n' + description,
     'avatar_url': profile_url
   };
 
@@ -121,7 +123,8 @@ function processQueue() {
       sendToDiscord({
         name: 'pm2-discord-plus',
         event: 'suppressed',
-        description: 'Messages are being suppressed due to rate limiting.'
+        description: 'Messages are being suppressed due to rate limiting.',
+        timestamp: Math.floor(Date.now() / 1000)
       });
     }
     messages.splice(conf.queue_max, messages.length);
