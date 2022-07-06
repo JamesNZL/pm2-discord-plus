@@ -47,6 +47,9 @@
   "config": {
     "discord_url": null,
     "process_name": null,
+    "embed_name": null,
+    "embed_footer_icon": null,
+    "date_format": "default",
     "log": true,
     "error": false,
     "kill": true,
