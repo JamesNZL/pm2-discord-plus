@@ -4,6 +4,7 @@
 		"deps",
 		"deps-dev",
 		"lint",
-		"scopes"
+		"scopes",
+		"config"
 	]
 }
