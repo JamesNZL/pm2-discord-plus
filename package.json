@@ -4,7 +4,8 @@
   "description": "A PM2 module to emit events and logs to Discord, with style.",
   "main": "index.js",
   "scripts": {
-    "version": "standard-version --sign"
+    "version": "standard-version --sign",
+    "publish": "git push --follow-tags origin master"
   },
   "repository": {
     "type": "git",
