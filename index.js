@@ -80,7 +80,8 @@ function sendToDiscord(message) {
           icon_url: profile_url
         },
         footer: {
-          text: dateTime
+          text: dateTime,
+          icon_url: conf.embed_footer_icon || undefined
         }
       }
     ]

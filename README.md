@@ -47,14 +47,15 @@ pm2 set pm2-discord-plus:error false
 ## Options
 
 The following options are available:
-| Option             | Type    | Description                                                                                                                                                              | Default     | Range               |
-| ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | ------------------- |
-| **process_name**   | string  | Use this to setting to only output the logs of a specific process                                                                                                        | `null`      |                     |
-| **buffer**         | boolean | Whether to buffer messages by timestamp. Messages that occur within `buffer_seconds` of each other will be concatenated and posted together in a single Discord message. | `true`      |                     |
-| **buffer_seconds** | int     | Number of seconds within which to aggregate messages. Ignored if `buffer` is `false`.                                                                                    | `1`         | `Min: 1, Max: 5`    |
-| **queue_max**      | int     | Maximum number of messages to keep in the queue before truncation. When the queue exceeds this maximum, a rate limit message will be posted to Discord.                  | `100`       | `Min: 10, Max: 100` |
-| **embed_name**     | string  | The name to use for the author field of Discord embeds                                                                                                                   | `'null'`    |                     |
-| **date_format**    | string  | The [dateformat mask](https://www.npmjs.com/package/dateformat#mask-options) with which to format the message timestamp                                                  | `'default'` |                     |
+| Option                | Type    | Description                                                                                                                                                              | Default     | Range               |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | ------------------- |
+| **process_name**      | string  | Use this to setting to only output the logs of a specific process                                                                                                        | `null`      |                     |
+| **buffer**            | boolean | Whether to buffer messages by timestamp. Messages that occur within `buffer_seconds` of each other will be concatenated and posted together in a single Discord message. | `true`      |                     |
+| **buffer_seconds**    | int     | Number of seconds within which to aggregate messages. Ignored if `buffer` is `false`.                                                                                    | `1`         | `Min: 1, Max: 5`    |
+| **queue_max**         | int     | Maximum number of messages to keep in the queue before truncation. When the queue exceeds this maximum, a rate limit message will be posted to Discord.                  | `100`       | `Min: 10, Max: 100` |
+| **embed_name**        | string  | The name to use for the author field of Discord embeds                                                                                                                   | `'null'`    |                     |
+| **embed_footer_icon** | string  | An http(s) URL to an image to use as the Discord embed footer icon                                                                                                       | `'default'` |                     |
+| **date_format**       | string  | The [dateformat mask](https://www.npmjs.com/package/dateformat#mask-options) with which to format the message timestamp                                                  | `'default'` |                     |
 
 Set these options in the same way you subscribe to events.
 
