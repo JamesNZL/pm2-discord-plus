@@ -55,14 +55,24 @@ function sendToDiscord(message) {
 
   var profile_url = config.image_url + profile_img;
 
-  // TODO: codeblock & codeblock language
-  // var codeLanguage = 
+  // select the codeblock language dynamically
+  var codeLanguage;
+  
+  try {
+    JSON.parse(description.replaceAll('\n', ''));
+    // if description can be parsed as json, use json highlighting
+    codeLanguage = 'json';
+  }
+  catch {
+    // if description cannot be parsed as json, use js highlighting
+    codeLanguage = 'js';
+  }
   
   // The JSON payload to send to the Webhook
   var payload = {
     embeds: [
       {
-        description,
+        description: '```' + codeLanguage + '\n' + description + '```',
         // TODO: embed colour
         // color: 
         author: {
