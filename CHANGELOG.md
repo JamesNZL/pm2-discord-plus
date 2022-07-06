@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/JamesNZL/pm2-discord-plus/compare/v0.1.4...v0.1.5) (2022-07-06)
+
+
+### Bug Fixes
+
+* :wrench: configure option defaults ([b173d03](https://github.com/JamesNZL/pm2-discord-plus/commit/b173d03e3d9b5d9c06e3715f166999a79827a706))
+
 ### 0.1.4 (2022-07-06)
 
 
