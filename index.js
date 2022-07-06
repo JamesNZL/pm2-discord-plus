@@ -96,7 +96,7 @@ function sendToDiscord(message) {
   };
 
   // Finally, make the post request to the Discord Incoming Webhook
-  request(options, function(err, res, body) {
+  request(options, function(err, res) {
     if (err) {
       return console.error(err);
     }
