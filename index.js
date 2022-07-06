@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 var pm2 = require('pm2');
 var pmx = require('pmx');
 var request = require('request');
-var stripAnsi = require('strip-ansi');
+import stripAnsi from 'strip-ansi';
 import dateFormat from 'dateformat';
 
 var config = require('./config.json');
