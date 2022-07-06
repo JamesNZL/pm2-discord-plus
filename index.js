@@ -1,12 +1,9 @@
 'use strict';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
 var pm2 = require('pm2');
 var pmx = require('pmx');
 var request = require('request');
-import stripAnsi from 'strip-ansi';
-import dateFormat from 'dateformat';
+var stripAnsi = require('strip-ansi');
+var dateFormat = require('dateformat');
 
 var config = require('./config.json');
 
@@ -57,7 +54,7 @@ function sendToDiscord(message) {
 
   // select the codeblock language dynamically
   var codeLanguage;
-  
+
   try {
     JSON.parse(description.replaceAll('\n', ''));
     // if description can be parsed as json, use json highlighting
@@ -67,7 +64,7 @@ function sendToDiscord(message) {
     // if description cannot be parsed as json, use js highlighting
     codeLanguage = 'js';
   }
-  
+
   // The JSON payload to send to the Webhook
   var payload = {
     embeds: [
@@ -96,7 +93,7 @@ function sendToDiscord(message) {
   };
 
   // Finally, make the post request to the Discord Incoming Webhook
-  request(options, function(err, res) {
+  request(options, function (err, res) {
     if (err) {
       return console.error(err);
     }
@@ -117,9 +114,9 @@ function bufferMessage() {
 
   // continue shifting elements off the queue while they are the same event and 
   // timestamp so they can be buffered together into a single request
-  while (messages.length && 
-    (messages[0].timestamp >= nextMessage.timestamp && 
-      messages[0].timestamp < (nextMessage.timestamp + conf.buffer_seconds)) && 
+  while (messages.length &&
+    (messages[0].timestamp >= nextMessage.timestamp &&
+      messages[0].timestamp < (nextMessage.timestamp + conf.buffer_seconds)) &&
     messages[0].event === nextMessage.event) {
 
     // append description to our buffer and shift the message off the queue and discard it
@@ -165,7 +162,7 @@ function processQueue() {
   }
 
   // Wait 10 seconds and then process the next message in the queue
-  setTimeout(function() {
+  setTimeout(function () {
     processQueue();
   }, 10000);
 }
@@ -184,7 +181,7 @@ function createMessage(data, eventName, altDescription) {
   var msg = altDescription || data.data;
   if (typeof msg === 'object') {
     msg = JSON.stringify(msg);
-  } 
+  }
 
   messages.push({
     name: data.process.name,
@@ -195,25 +192,25 @@ function createMessage(data, eventName, altDescription) {
 }
 
 // Start listening on the PM2 BUS
-pm2.launchBus(function(err, bus) {
+pm2.launchBus(function (err, bus) {
 
   // Listen for process logs
   if (conf.log) {
-    bus.on('log:out', function(data) {
+    bus.on('log:out', function (data) {
       createMessage(data, 'log');
     });
   }
 
   // Listen for process errors
   if (conf.error) {
-    bus.on('log:err', function(data) {
+    bus.on('log:err', function (data) {
       createMessage(data, 'error');
     });
   }
 
   // Listen for PM2 kill
   if (conf.kill) {
-    bus.on('pm2:kill', function(data) {
+    bus.on('pm2:kill', function (data) {
       messages.push({
         name: 'PM2',
         event: 'kill',
@@ -225,13 +222,13 @@ pm2.launchBus(function(err, bus) {
 
   // Listen for process exceptions
   if (conf.exception) {
-    bus.on('process:exception', function(data) {
+    bus.on('process:exception', function (data) {
       createMessage(data, 'exception');
     });
   }
 
   // Listen for PM2 events
-  bus.on('process:event', function(data) {
+  bus.on('process:event', function (data) {
     if (!conf[data.event]) { return; }
     var msg = 'The following event has occurred on the PM2 process ' + data.process.name + ': ' + data.event;
     createMessage(data, data.event, msg);

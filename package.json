@@ -1,6 +1,5 @@
 {
   "name": "pm2-discord-plus",
-  "type": "module",
   "version": "0.1.6",
   "description": "A PM2 module to emit events to discord with style",
   "main": "index.js",
@@ -38,11 +37,11 @@
   },
   "homepage": "https://github.com/JamesNZL/pm2-discord-plus",
   "dependencies": {
-    "dateformat": "^5.0.3",
+    "dateformat": "^4.6.3",
     "pm2": "^5.0.0",
     "pmx": "^1.6.7",
     "request": "^2.88.0",
-    "strip-ansi": "^7.0.0"
+    "strip-ansi": "^6.0.1"
   },
   "config": {
     "discord_url": null,
