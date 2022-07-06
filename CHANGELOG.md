@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/JamesNZL/pm2-discord-plus/compare/v0.1.6...v0.1.7) (2022-07-06)
+
+
+### Bug Fixes
+
+* :bug: revert 9384d9c back to commonjs imports ([9449791](https://github.com/JamesNZL/pm2-discord-plus/commit/94497914e01a868d3be693592c3150d0dd1891e2))
+
 ### [0.1.6](https://github.com/JamesNZL/pm2-discord-plus/compare/v0.1.5...v0.1.6) (2022-07-06)
 
 
