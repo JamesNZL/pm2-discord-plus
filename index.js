@@ -42,18 +42,18 @@ function sendToDiscord(message) {
   }
 
   // Select the webhook profile image based on the process type
-  var profile_img;
+  var configKey;
 
   switch (message.event) {
-    case 'log': profile_img = config.image.console; break;
-    case 'error': profile_img = config.image.error; break;
-    case 'info': profile_img = config.image.info; break;
-    case 'success': profile_img = config.image.success; break;
-    case 'suppressed': profile_img = config.image.warning; break;
-    default: profile_img = config.image.console;
+    case 'log': configKey = 'console'; break;
+    case 'error': configKey = 'error'; break;
+    case 'info': configKey = 'info'; break;
+    case 'success': configKey = 'success'; break;
+    case 'suppressed': configKey = 'warning'; break;
+    default: configKey = 'console';
   }
 
-  var profile_url = config.image_url + profile_img;
+  var profile_url = config.image_url + config.image[configKey];
 
   // select the codeblock language dynamically
   var codeLanguage;
@@ -73,8 +73,8 @@ function sendToDiscord(message) {
     embeds: [
       {
         description: '```' + codeLanguage + '\n' + description + '```',
-        // TODO: embed colour
-        // color: 
+        // get the corresponding colour configuration and get its base10 representation
+        color: parseInt(config.color[configKey].replace('#', ''), 16),
         author: {
           // TODO: custom name
           name: message.name,
