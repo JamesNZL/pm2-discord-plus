@@ -52,10 +52,26 @@ function sendToDiscord(message) {
 
   var profile_url = config.image_url + profile_img;
 
+  // TODO: codeblock & codeblock language
+  // var codeLanguage = 
+  
   // The JSON payload to send to the Webhook
   var payload = {
-    'content' : dateTime + ':\n\n' + description,
-    'avatar_url': profile_url
+    embeds: [
+      {
+        description,
+        // TODO: embed colour
+        // color: 
+        author: {
+          // TODO: custom name
+          name: message.name,
+          icon_url: profile_url
+        },
+        footer: {
+          text: dateTime
+        }
+      }
+    ]
   };
 
   // Options for the post request
