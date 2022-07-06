@@ -230,7 +230,7 @@ pm2.launchBus(function (err, bus) {
   // Listen for PM2 events
   bus.on('process:event', function (data) {
     if (!conf[data.event]) { return; }
-    var msg = 'The following event has occurred on the PM2 process ' + data.process.name + ': ' + data.event;
+    var msg = "'" + data.event + "' event on process '" + data.process.name + "'";
     createMessage(data, data.event, msg);
   });
 
