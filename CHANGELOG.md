@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/JamesNZL/pm2-discord-plus/compare/v0.1.7...v0.1.8) (2022-07-06)
+
+
+### Features
+
+* :speech_balloon: make event message more concise ([2e968b4](https://github.com/JamesNZL/pm2-discord-plus/commit/2e968b4cf0217c3653a90d0ca69f2e4cd33054c4))
+
 ### [0.1.7](https://github.com/JamesNZL/pm2-discord-plus/compare/v0.1.6...v0.1.7) (2022-07-06)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "pm2-discord-plus",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A PM2 module to emit events and logs to Discord, with style.",
   "main": "index.js",
   "scripts": {
