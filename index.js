@@ -76,8 +76,7 @@ function sendToDiscord(message) {
         // get the corresponding colour configuration and get its base10 representation
         color: parseInt(config.color[configKey].replace('#', ''), 16),
         author: {
-          // TODO: custom name
-          name: message.name,
+          name: conf.embed_name || message.name,
           icon_url: profile_url
         },
         footer: {
